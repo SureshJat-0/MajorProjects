@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Listing</title>
+    <title>Listing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/css/allListingPage.css">
+    <link rel="stylesheet" href="/css/indivisualList.css">
 </head>
 
 <body>
@@ -26,24 +26,16 @@
     </navbar>
     <!-- main body section -->
     <div class="container">
-
-        <div class="ListsHeading">
-            <h1>All Listings</h1>
+        <div class="box">
+            <img src="<%= listItem.imgUrl %>" alt="" class="image">
+            <div class="hotelDescription"><%= listItem.hotelDescription %></div>
+            <div class="hotelPrice">₹<%= listItem.hotelPrice %> \ night</div>
+            <div class="hotelLocation">
+                <%= listItem.hotelLocation %>
+            </div>
+            <button class="editBtn">Edit</button>
+            <button class="deleteBtn">Delete</button>
         </div>
-        <div class="allLists">
-            <% allLists.forEach(item=> { %>
-                <a href="/listing/<%= item._id %>">
-                    <div class="box">
-                        <img src="<%= item.imgUrl %>" alt="image">
-                        <p class="location">
-                            <%= item.hotelLocation %>
-                        </p>
-                        <p class="price">₹<%= item.hotelPrice %> \ night</p>
-                    </div>
-                </a>
-                <% }) %>
-        </div>
-
     </div>
     <!-- footer section  -->
     <footer class="footer">

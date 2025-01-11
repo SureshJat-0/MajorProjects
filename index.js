@@ -2,10 +2,9 @@ const express = require('express');
 const path = require('path');
 
 const port = 3000;
+const app = express();
 
 const { ListingRouter } = require('./controllers/listing');
-
-const app = express();
 
 const { connectMongo } = require('./mongoConnections');
 
@@ -21,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', (req, res) => {
-    res.send('OK')
+    res.send('Home Page');
 })
 
 app.use('/listing', ListingRouter);

@@ -1,5 +1,5 @@
 :root {
-    --var--red: #FF5A5F;
+    --var-red: #FF5A5F;
 }
 
 body {
@@ -25,7 +25,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--var--red);
+    color: var(--var-red);
     font-size: 2rem;
     margin-left: 2.5rem;
     cursor: pointer;
@@ -53,39 +53,41 @@ body {
     color: black;
 }
 
-/* body section  */
-
-.container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.ListsHeading {
-    align-self: flex-start;
-    margin: 0rem 2rem;
-}
-
-.allLists {
-    width: 95%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.allLists a {
-    text-decoration: none;
-    color: black;
-}
-
 .box {
-    margin-bottom: 3rem;
+    width: 600px;
 }
 
 .box img {
-    width: 400px;
-    height: 280px;
+    width: 600px;
+    height: 400px;
     border-radius: 10px;
+}
+
+.box .hotelDescription {
+    font-size: 1.1rem;
+    margin: 0.8rem 0;
+    font-weight: 600;
+}
+
+.box .hotelPrice,
+.box .hotelLocation {
+    color: rgb(60, 60, 60);
+    margin-bottom: 0.7rem;
+}
+
+.editBtn,
+.deleteBtn {
+    font-size: 1.2rem;
+    padding: 0.2rem 1.5rem;
+    border-radius: 5px;
+    background-color: var(--var-red);
+    border: 0;
+    color: white;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.deleteBtn {
+    padding: 0.2rem 1.1rem;
+    background-color: rgb(35, 35, 35);
 }
