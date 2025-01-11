@@ -29,12 +29,12 @@
         <div class="box">
             <img src="<%= listItem.imgUrl %>" alt="" class="image">
             <div class="hotelDescription"><%= listItem.hotelDescription %></div>
-            <div class="hotelPrice">₹<%= listItem.hotelPrice %> \ night</div>
+            <div class="hotelPrice">₹<%= listItem.hotelPrice %> / night</div>
             <div class="hotelLocation">
                 <%= listItem.hotelLocation %>
             </div>
-            <button class="editBtn">Edit</button>
-            <button class="deleteBtn">Delete</button>
+            <a href="/listing/<%= listItem.id %>/edit"><button class="editBtn">Edit</button></a>
+            <a href=""><button class="deleteBtn">Delete</button></a>
         </div>
     </div>
     <!-- footer section  -->

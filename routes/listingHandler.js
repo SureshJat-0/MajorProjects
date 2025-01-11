@@ -11,7 +11,14 @@ async function indivisualListPageHandler(req, res) {
     res.render('indivisualList.ejs', {listItem: listItem});
 }
 
+async function editListPageHandler(req, res) {
+    const id = req.params.id;
+    const element = await List.findById(id);
+    res.render('editList.ejs', {element: element});
+}
+
 module.exports = {
     listingPagehandler,
     indivisualListPageHandler,
+    editListPageHandler,
 }

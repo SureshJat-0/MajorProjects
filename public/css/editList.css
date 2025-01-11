@@ -1,0 +1,145 @@
+:root {
+    --var-red: #FF5A5F;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* navbar sections  */
+.nav {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+}
+
+.logoSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--var-red);
+    font-size: 2rem;
+    margin-left: 2.5rem;
+    cursor: pointer;
+}
+
+.nav ul {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    list-style: none;
+}
+
+.nav ul li {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+
+.nav ul li:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+/* edit list  */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .heading {
+    align-self: flex-start;
+    margin: 0.8rem 0;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+}
+
+form label {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-left: 5px;
+}
+
+form input,
+form textarea {
+    font-size: 1rem;
+    margin-top: 0.3rem;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    border: 1px solid rgb(208, 208, 208);
+    outline: none;
+}
+
+/* here  */
+.rupee {
+    font-size: 1.3rem;
+    padding: 3px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(208, 208, 208);
+    margin-top: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-right: 0;
+    background-color: rgb(236, 236, 236);
+}
+
+.mearg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.combine {
+    display: flex;
+    align-items: center;
+}
+
+.priceInput {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.priceInputSection {
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.locationInputSection {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.editBtn {
+    margin: 2rem 0;
+}
+
+.editBtn button {
+    font-size: 1.2rem;
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
+    background-color: var(--var-red);
+    color: white;
+    border: 0;
+}
