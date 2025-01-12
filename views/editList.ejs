@@ -19,40 +19,44 @@
             <div class="logoText">airbnb</div>
         </div>
         <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">AllListing</a></li>
-            <li><a href="">airbnb your home</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/listing">AllListing</a></li>
+            <li><a href="/listing/new">airbnb your home</a></li>
         </ul>
     </navbar>
     <!-- main body section -->
     <div class="container">
         <h1 class="heading">Edit Your Place</h1>
-        <form action="/listing/edit/" method="post">
+        <form action="/listing/<%= element.id %>/edit/" method="post">
 
             <label for="">Title</label>
-            <input type="text" placeholder="Enter the title of your place" required>
+            <input type="text" name="hotelTitle" placeholder="Enter the title of your place"
+                value="<%= element.hotelLocation %>">
 
             <label for="">Description</label>
-            <textarea type="text" placeholder="Share some details about your place" rows="3" required></textarea>
+            <textarea name="hotelDescription" type="text" placeholder="Share some details about your place" rows="3"
+                value=""><%= element.hotelDescription %></textarea>
 
             <label for="">Image Link</label>
-            <input type="text" placeholder="Past you image link here" required>
+            <input type="text" name="imgUrl" placeholder="Past you image link here" value="<%= element.imgUrl %>">
 
             <div class="mearg">
                 <div class="priceInputSection">
                     <label for="" class="priceLabel">Price</label>
                     <div class="combine">
-                        <div class="rupee">₹</div><input class="priceInput" type="number" placeholder="Price" required>
+                        <div class="rupee">₹</div><input class="priceInput" name="hotelPrice" type="number"
+                            placeholder="Price" value="<%= element.hotelPrice %>">
                     </div>
                 </div>
                 <div class="locationInputSection">
                     <label for="">Location</label>
-                    <input class="locationInput" type="text" placeholder="Location of your Home" required>
+                    <input class="locationInput" name="hotelLocation" type="text" placeholder="Location of your Home"
+                        value="<%= element.hotelLocation %>">
                 </div>
             </div>
 
             <div class="editBtn">
-                <button class="edit">Confirm Edit</button>
+                <button type="submit" class="edit">Confirm Edit</button>
             </div>
 
         </form>

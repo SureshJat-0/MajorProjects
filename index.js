@@ -18,14 +18,14 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send('Home Page');
 })
 
 app.use('/listing', ListingRouter);
-
-
 
 app.listen(port, () => {
     console.log('Server Started');

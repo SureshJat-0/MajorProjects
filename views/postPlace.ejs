@@ -19,40 +19,43 @@
             <div class="logoText">airbnb</div>
         </div>
         <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">AllListing</a></li>
-            <li><a href="">airbnb your home</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/listing">AllListing</a></li>
+            <li><a href="/listing/new">airbnb your home</a></li>
         </ul>
     </navbar>
     <!-- main body section -->
     <div class="container">
-        <h1 class="heading">Edit Your Place</h1>
-        <form action="/listing/post/" method="post">
+        <h1 class="heading">Post Your Place</h1>
+        <form action="/listing/new" method="post">
 
             <label for="">Title</label>
-            <input type="text" placeholder="Enter the title of your place" required>
+            <input type="text" name="hotelTitle" placeholder="Enter the title of your place" required>
 
             <label for="">Description</label>
-            <textarea type="text" placeholder="Share some details about your place" rows="3" required></textarea>
+            <textarea type="text" name="hotelDescription" placeholder="Share some details about your place" rows="3"
+                required></textarea>
 
             <label for="">Image Link</label>
-            <input type="text" placeholder="Past you image link here" required>
+            <input type="text" name="imgUrl" placeholder="Past you image link here" required>
 
             <div class="mearg">
                 <div class="priceInputSection">
                     <label for="" class="priceLabel">Price</label>
                     <div class="combine">
-                        <div class="rupee">₹</div><input class="priceInput" type="number" placeholder="Price" required>
+                        <div class="rupee">₹</div><input name="hotelPrice" class="priceInput" type="number"
+                            placeholder="Price" required>
                     </div>
                 </div>
                 <div class="locationInputSection">
                     <label for="">Location</label>
-                    <input class="locationInput" type="text" placeholder="Location of your Home" required>
+                    <input class="locationInput" name="hotelLocation" type="text" placeholder="Location of your Home"
+                        required>
                 </div>
             </div>
 
             <div class="editBtn">
-                <button class="edit">Confirm Edit</button>
+                <button class="edit">Post Place</button>
             </div>
 
         </form>
