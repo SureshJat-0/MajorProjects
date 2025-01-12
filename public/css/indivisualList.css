@@ -75,6 +75,10 @@ body {
     margin-bottom: 0.7rem;
 }
 
+.btns {
+    display: flex;
+}
+
 .editBtn,
 .deleteBtn {
     font-size: 1.2rem;

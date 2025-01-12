@@ -35,8 +35,12 @@
             <div class="hotelLocation">
                 <%= listItem.hotelLocation %>
             </div>
-            <a href="/listing/<%= listItem.id %>/edit"><button class="editBtn">Edit</button></a>
-            <a href="/listing/delete/<%= listItem.id %>"><button class="deleteBtn">Delete</button></a>
+            <div class="btns">
+                <a href="/listing/<%= listItem.id %>/edit"><button class="editBtn">Edit</button></a>
+                <form method="POST" action="/listing/<%= listItem._id %>?_method=DELETE">
+                    <button class="deleteBtn">Delete</button>
+                </form>
+            </div>
         </div>
     </div>
     <!-- footer section  -->
