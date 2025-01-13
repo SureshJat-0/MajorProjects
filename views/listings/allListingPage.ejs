@@ -1,0 +1,24 @@
+<% layout('/layouts/boilerplate') %>
+    <!-- main body section -->
+    <div class="container overflow-hidden">
+        <div class="ListsHeading">
+            <h1>All Listings</h1>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+            <% allLists.forEach(item=> { %>
+                <div class="col custom_css_card">
+                    <div class="card">
+                        <a href="/listing/<%= item._id %>">
+                            <img src="<%= item.imgUrl %>" class="card-img-top" alt="img">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= item.hotelLocation %>
+                                </h5>
+                                <p class="card-text">₹<%= item.hotelPrice %> / night</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>

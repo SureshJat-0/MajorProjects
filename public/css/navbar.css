@@ -1,0 +1,25 @@
+:root {
+    --var--red: #FF5A5F;
+}
+
+/* navbar style  */
+
+.navbar-brand {
+    color: var(--var--red);
+    font-size: 2rem;
+    margin-left: 2.5rem;
+}
+
+.navbar-brand:hover {
+    color: var(--var--red);
+}
+
+.navbar-nav a {
+    border-radius: 20px;
+    margin: 0.5rem;
+    color: black;
+}
+
+.navbar-nav a:hover {
+    background-color: rgb(245, 245, 245);
+}

@@ -4,7 +4,7 @@ const { List } = require('../models/list');
 // Listing all Places
 async function listingPagehandler(req, res) {
     const allLists = await List.find();
-    res.render('allListingPage.ejs', { allLists: allLists });
+    res.render('listings/allListingPage.ejs', { allLists: allLists });
 }
 
 // Indivisual page
@@ -15,7 +15,7 @@ async function indivisualListPageHandler(req, res, next) {
     if (!listItem) {
         return next(new ExpressError(404, 'No Place Found!'));
     }
-    res.render('indivisualList.ejs', { listItem: listItem });
+    res.render('listings/individualList.ejs', { listItem: listItem });
 }
 
 // Get the edit page for current Place
@@ -25,7 +25,7 @@ async function editListPageHandler(req, res, next) {
     if (!element) {
         return next(new ExpressError(404, "No Place Found!"))
     }
-    res.render('editList.ejs', { element: element });
+    res.render('listings/editList.ejs', { element: element });
 }
 
 // Post the edited Place to db
@@ -50,7 +50,7 @@ async function deleteListHandler(req, res) {
 
 // Get the form for the new Place post
 async function getNewListPostHandler(req, res) {
-    res.render('postPlace.ejs');
+    res.render('listings/postPlace.ejs');
 }
 
 // Post the new page on db

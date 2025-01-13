@@ -1,0 +1,23 @@
+<% layout('/layouts/boilerplate') %>
+    <div class="container custom_individualPage_css d-flex justify-content-center">
+        <div class="div">
+            <div class="card">
+                <img src="<%= listItem.imgUrl %>" alt="" class="image">
+                <div class="card-body">
+                    <div class="card-text my-1 fw-bold">
+                        <%= listItem.hotelDescription %>
+                    </div>
+                    <div class="cart-title my-1 fw-semibold custom_grey_color">₹<%= listItem.hotelPrice %> / night</div>
+                    <div class="card-text my-1 fw-semibold custom_grey_color">
+                        <%= listItem.hotelLocation %>
+                    </div>
+                </div>
+            </div>
+            <div class="btns d-flex">
+                <a href="/listing/<%= listItem.id %>/edit" class="btn btn-primary m-1 ms-0">Edit this Place</a>
+                <form method="POST" class="m-1" action="/listing/<%= listItem._id %>?_method=DELETE">
+                    <button class="btn btn-danger">Delete this Place</button>
+                </form>
+            </div>
+        </div>
+    </div>

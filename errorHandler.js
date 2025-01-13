@@ -9,7 +9,7 @@ class ExpressError extends Error {
 
 // Error handler for the async functions
 function asyncWrapErroHandler(fn) {
-    return function(req, res, next) {
+    return function (req, res, next) {
         fn(req, res, next).catch((err) => next(err));
     }
 }

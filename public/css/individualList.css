@@ -1,0 +1,19 @@
+/* style for individual page  */
+
+.custom_individualPage_css .card {
+    width: 650px;
+    max-height: 670px;
+    border: 0;
+}
+
+.custom_individualPage_css .card img {
+    border-radius: 10px;
+}
+
+.custom_individualPage_css .card .card-body {
+    padding-left: 0;
+}
+
+.custom_grey_color {
+    color: rgb(79, 79, 79);
+}

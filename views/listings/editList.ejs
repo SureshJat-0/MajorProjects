@@ -1,0 +1,43 @@
+<% layout('/layouts/boilerplate') %>
+
+    <div class="container d-flex justify-content-center">
+        <form class="custom_editPlace_form" action="/listing/<%= element.id %>/edit/" method="post">
+            <h1 class="heading">Edit Your Place</h1>
+
+            <div class="mb-3">
+                <label for="titleNewPlacePost" class="form-label">Title</label>
+                <input value="<%= element.hotelLocation %>" type="text" name="hotelTitle" class="form-control"
+                    placeholder="Enter the title of your place" id="titleNewPlacePost" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="descriptionNewPlacePost" class="form-label">Description</label>
+                <textarea name="hotelDescription" type="text" class="form-control"
+                    placeholder="Enter the Description of your place" id="descriptionNewPlacePost" rows="3"
+                    required><%= element.hotelDescription %></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="imageNewPlacePost" class="form-label">Image Link</label>
+                <input value="<%= element.imgUrl %>" name="imgUrl" type="text" class="form-control"
+                    placeholder="Enter the Image Link of your place" id="imageNewPlacePost" required>
+            </div>
+
+            <div class="row">
+
+                <div class="col-4 mb-3">
+                    <label for="priceNewPlacePost" class="form-label">Price</label>
+                    <input value="<%= element.hotelPrice %>" name="hotelPrice" type="number" class="form-control"
+                        placeholder="Enter the Price of your place" id="priceNewPlacePost" required>
+                </div>
+
+                <div class="col-8 mb-3">
+                    <label for="locationNewPlacePost" class="form-label">Location</label>
+                    <input value="<%= element.hotelLocation %>" name="hotelLocation" type="text" class="form-control"
+                        placeholder="Enter the Location of your place" id="locationNewPlacePost" required>
+                </div>
+
+            </div>
+            <button class="btn btn-primary my-3">Confirm Edit</button>
+        </form>
+    </div>

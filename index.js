@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
-const { ExpressError } = require('./errorHandler')
+const ejsMate = require('ejs-mate');
 
 const port = 3000;
 const app = express();
@@ -17,6 +17,7 @@ connectMongo('mongodb://127.0.0.1:27017/airbnb')
 
 // All middleswares
 app.set('view engine', 'ejs');
+app.engine('ejs', ejsMate);
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
@@ -36,10 +37,10 @@ app.use('/listing', ListingRouter);
 app.use((err, req, res, next) => {
     console.log('----- Error ------');
     console.log(err.name);
-    const { status = 500, message = "Some error Occured!"} = err;
+    const { status = 500, message = "Some error Occured!" } = err;
     res.status(status).send(message);
     // next(err); // This will call the next error handler ( default express error handler )
-    // next() // if no err argument pass it will search for the middleware which is not error handler
+    // next() // if no err argument pass it will search for the non-error handling meddleware
 })
 
 // Middleware if no route is found
