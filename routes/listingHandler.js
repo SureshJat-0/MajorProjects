@@ -1,4 +1,4 @@
-const { ExpressError } = require('../errorHandler');
+const { ExpressError } = require('../errors/errorHandler');
 const { List } = require('../models/list');
 
 // Listing all Places
@@ -18,18 +18,8 @@ async function indivisualListPageHandler(req, res, next) {
     res.render('listings/individualList.ejs', { listItem: listItem });
 }
 
-// Get the edit page for current Place
-async function editListPageHandler(req, res, next) {
-    const id = req.params.id;
-    const element = await List.findById(id);
-    if (!element) {
-        return next(new ExpressError(404, "No Place Found!"))
-    }
-    res.render('listings/editList.ejs', { element: element });
-}
-
 // Post the edited Place to db
-async function postEditedPageHandler(req, res) {
+async function postEditedPageHandler(req, res, next) {
     const body = req.body;
     const id = req.params.id;
     await List.findByIdAndUpdate(id, {
@@ -39,6 +29,16 @@ async function postEditedPageHandler(req, res) {
         hotelDescription: body.hotelDescription
     });
     res.redirect('/listing');
+}
+
+// Get the edit page for current Place
+async function editListPageHandler(req, res, next) {
+    const id = req.params.id;
+    const element = await List.findById(id);
+    if (!element) {
+        return next(new ExpressError(404, "No Place Found!"))
+    }
+    res.render('listings/editList.ejs', { element: element });
 }
 
 // Delete the current Place

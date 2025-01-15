@@ -38,14 +38,14 @@ app.use((err, req, res, next) => {
     console.log('----- Error ------');
     console.log(err.name);
     const { status = 500, message = "Some error Occured!" } = err;
-    res.status(status).send(message);
+    res.status(status).render('listings/error.ejs', { message });
     // next(err); // This will call the next error handler ( default express error handler )
     // next() // if no err argument pass it will search for the non-error handling meddleware
 })
 
 // Middleware if no route is found
 app.use((req, res, next) => {
-    res.status(404).send('Page Not Found');
+    res.status(404).render('listings/error.ejs', { message: "Page Not Found!" });
 })
 
 app.listen(port, () => {

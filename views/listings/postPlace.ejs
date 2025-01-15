@@ -1,13 +1,19 @@
 <% layout('/layouts/boilerplate') %>
 
     <div class="container d-flex justify-content-center">
-        <form class="custom_newPlace_post" action="/listing/new" method="post">
+        <form class="custom_newPlace_post needs-validation" novalidate action="/listing/new" method="post">
             <h1 class="heading">Post Your Place</h1>
 
             <div class="mb-3">
                 <label for="titleNewPlacePost" class="form-label">Title</label>
                 <input type="text" name="hotelTitle" class="form-control" placeholder="Enter the title of your place"
                     id="titleNewPlacePost" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Enter Title of your Place
+                </div>
             </div>
 
             <div class="mb-3">
@@ -15,12 +21,24 @@
                 <textarea name="hotelDescription" type="text" class="form-control"
                     placeholder="Enter the Description of your place" id="descriptionNewPlacePost" rows="3"
                     required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Enter Description of your Place
+                </div>
             </div>
 
             <div class="mb-3">
                 <label for="imageNewPlacePost" class="form-label">Image Link</label>
                 <input name="imgUrl" type="text" class="form-control" placeholder="Enter the Image Link of your place"
                     id="imageNewPlacePost" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Enter Image Link of your Place
+                </div>
             </div>
 
             <div class="row">
@@ -29,12 +47,24 @@
                     <label for="priceNewPlacePost" class="form-label">Price</label>
                     <input name="hotelPrice" type="number" class="form-control"
                         placeholder="Enter the Price of your place" id="priceNewPlacePost" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please Enter valid Price of your Place
+                    </div>
                 </div>
 
                 <div class="col-8 mb-3">
                     <label for="locationNewPlacePost" class="form-label">Location</label>
                     <input name="hotelLocation" type="text" class="form-control"
                         placeholder="Enter the Location of your place" id="locationNewPlacePost" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please Enter Location of your Place
+                    </div>
                 </div>
 
             </div>
