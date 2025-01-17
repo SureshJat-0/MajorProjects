@@ -1,17 +1,29 @@
-<div class="container my-5">
+<div class="container my-4">
 
     <!-- form section of review  -->
     <hr>
-    <form method="POST" action="/listing/<%= listItem.id %>/reviews" class="mb-4">
+    <form method="POST" novalidate action="/listing/<%= listItem.id %>/reviews" class="mb-3 needs-validation">
         <h3 class="mt-4">Leave a Review</h3>
         <div class="mb-3">
             <label for="ratingReview" class="form-label">Rating</label>
             <input name="review[rating]" type="range" min="1" max="5" class="form-range" id="ratingReview" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please Enter Valid Rating.
+            </div>
         </div>
 
         <div class="mb-3">
             <label for="commentRiview" class="form-label">Comments</label>
             <textarea class="form-control" name="review[comment]" id="commentRiview" rows="4" required></textarea>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please Enter Valid Comment.
+            </div>
         </div>
 
         <div class="mb-3">
@@ -24,7 +36,26 @@
     <!-- showin all reviews -->
     <h3 class="my-4">All Reviews</h3>
     <div class="">
-        
+        <% if (listItem.reviews.length> 0) { %>
+            <div class="row">
+                <% listItem.reviews.forEach(review=> { %>
+                    <div class="card col-5 mb-3 ms-3">
+                        <div class="card-body">
+                            <h5 class="card-title my-1">Jane Doe</h5>
+                            <div class="card-text my-1">
+                                <%= review.comment %>
+                            </div>
+                            <div class="card-text my-1">
+                                <%= review.rating %> Star
+                            </div>
+                            <form action="/listing/<%= listItem._id %>/reviews/<%= review._id %>?_method=DELETE"
+                                method="POST">
+                                <button class="btn btn-sm btn-dark">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+            <% } %>
     </div>
-
 </div>

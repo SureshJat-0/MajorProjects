@@ -1,6 +1,6 @@
 const { ExpressError } = require('../errors/errorHandler');
 const { List } = require('../models/list');
-const Review = require('../models/review');
+const { Review } = require('../models/review');
 
 // Listing all Places
 async function listingPagehandler(req, res) {
@@ -11,7 +11,7 @@ async function listingPagehandler(req, res) {
 // Indivisual page
 async function indivisualListPageHandler(req, res, next) {
     const id = req.params.id;
-    const listItem = await List.findById(id);
+    const listItem = await List.findById(id).populate('reviews');
     // Error if id is not found in db
     if (!listItem) {
         return next(new ExpressError(404, 'No Place Found!'));
@@ -82,6 +82,14 @@ async function postReviewHandler(req, res) {
     res.redirect(`/listing/${req.params.id}`);
 }
 
+async function deleteReviewHandler(req, res) {
+    const { id, reviewId } = req.params;
+    await List.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    console.log(id);
+    res.redirect(`/listing/${id}`);
+}
+
 
 module.exports = {
     listingPagehandler,
@@ -92,4 +100,5 @@ module.exports = {
     getNewListPostHandler,
     postNewPlaceHandler,
     postReviewHandler,
+    deleteReviewHandler
 }
