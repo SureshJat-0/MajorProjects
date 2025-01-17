@@ -7,7 +7,7 @@
 
             <div class="mb-3">
                 <label for="titleNewPlacePost" class="form-label">Title</label>
-                <input value="<%= element.hotelLocation %>" type="text" name="hotelTitle" class="form-control"
+                <input value="<%= element.hotelTitle %>" type="text" name="hotelTitle" class="form-control"
                     placeholder="Enter the title of your place" id="titleNewPlacePost" required>
                 <div class="valid-feedback">
                     Looks good!
@@ -33,7 +33,7 @@
             <div class="mb-3">
                 <label for="imageNewPlacePost" class="form-label">Image Link</label>
                 <input value="<%= element.imgUrl %>" name="imgUrl" type="text" class="form-control"
-                    placeholder="Enter the Image Link of your place" id="imageNewPlacePost" required>
+                    placeholder="Enter the Image Link of your place" id="imageNewPlacePost">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -57,9 +57,21 @@
                 </div>
 
                 <div class="col-8 mb-3">
-                    <label for="locationNewPlacePost" class="form-label">Location</label>
+                    <label for="hotelCountry" class="form-label">Country</label>
+                    <input value="<%= element.hotelCountry %>" name="hotelCountry" type="text" class="form-control"
+                        placeholder="Enter the Country of your place" id="hotelCountry" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please Enter Country of your Place
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="hotelLocation" class="form-label">Location</label>
                     <input value="<%= element.hotelLocation %>" name="hotelLocation" type="text" class="form-control"
-                        placeholder="Enter the Location of your place" id="locationNewPlacePost" required>
+                        placeholder="Enter the Location of your place" id="hotelLocation" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -67,6 +79,7 @@
                         Please Enter Location of your Place
                     </div>
                 </div>
+
 
             </div>
             <button class="btn btn-primary my-3">Confirm Edit</button>

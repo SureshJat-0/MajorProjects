@@ -1,5 +1,6 @@
 const { ExpressError } = require('../errors/errorHandler');
 const { List } = require('../models/list');
+const Review = require('../models/review');
 
 // Listing all Places
 async function listingPagehandler(req, res) {
@@ -23,10 +24,12 @@ async function postEditedPageHandler(req, res, next) {
     const body = req.body;
     const id = req.params.id;
     await List.findByIdAndUpdate(id, {
+        hotelTitle: body.hotelTitle,
+        hotelDescription: body.hotelDescription,
         imgUrl: body.imgUrl,
-        hotelLocation: body.hotelLocation,
         hotelPrice: body.hotelPrice,
-        hotelDescription: body.hotelDescription
+        hotelCountry: body.hotelCountry,
+        hotelLocation: body.hotelLocation,
     });
     res.redirect('/listing');
 }
@@ -57,12 +60,26 @@ async function getNewListPostHandler(req, res) {
 async function postNewPlaceHandler(req, res) {
     const body = req.body;
     await List.create({
+        hotelTitle: body.hotelTitle,
+        hotelDescription: body.hotelDescription,
         imgUrl: body.imgUrl,
-        hotelLocation: body.hotelLocation,
         hotelPrice: body.hotelPrice,
-        hotelDescription: body.hotelDescription
+        hotelCountry: body.hotelCountry,
+        hotelLocation: body.hotelLocation,
     });
     res.redirect('/listing');
+}
+
+async function postReviewHandler(req, res) {
+    let listing = await List.findById(req.params.id);
+    let newReview = new Review(req.body.review);
+
+    listing.reviews.push(newReview);
+
+    await newReview.save();
+    await listing.save();
+
+    res.redirect(`/listing/${req.params.id}`);
 }
 
 
@@ -74,4 +91,5 @@ module.exports = {
     deleteListHandler,
     getNewListPostHandler,
     postNewPlaceHandler,
+    postReviewHandler,
 }

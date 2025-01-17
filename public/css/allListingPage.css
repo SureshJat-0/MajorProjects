@@ -19,3 +19,7 @@
 .custom_css_card .card .card-body {
     padding-left: 0;
 }
+
+.custom_css_card .card .card-body .card-text {
+    margin: 5px 0;
+}

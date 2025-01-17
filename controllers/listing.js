@@ -2,9 +2,9 @@ const express = require('express');
 const ListingRouter = express.Router();
 // Error handler for asnc functions
 const { asyncWrapErroHandler } = require('../errors/errorHandler');
-const validateListingJoi = require('../errors/joi');
+const { validateListingJoi, validateReviewJoi } = require('../errors/joi');
 
-const { listingPagehandler, indivisualListPageHandler, editListPageHandler, postEditedPageHandler, deleteListHandler, getNewListPostHandler, postNewPlaceHandler } = require('../routes/listingHandler');
+const { listingPagehandler, indivisualListPageHandler, editListPageHandler, postEditedPageHandler, deleteListHandler, getNewListPostHandler, postNewPlaceHandler, postReviewHandler } = require('../routes/listingHandler');
 
 // all listings
 ListingRouter.get('/', asyncWrapErroHandler(listingPagehandler));
@@ -18,6 +18,8 @@ ListingRouter.get('/:id/edit/', asyncWrapErroHandler(editListPageHandler));
 ListingRouter.post('/:id/edit/', validateListingJoi, asyncWrapErroHandler(postEditedPageHandler));
 // delete place
 ListingRouter.delete('/:id', asyncWrapErroHandler(deleteListHandler));
+// Post req for the review page
+ListingRouter.post('/:id/reviews', validateReviewJoi, asyncWrapErroHandler(postReviewHandler));
 
 module.exports = {
     ListingRouter,

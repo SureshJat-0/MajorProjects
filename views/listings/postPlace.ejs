@@ -32,12 +32,9 @@
             <div class="mb-3">
                 <label for="imageNewPlacePost" class="form-label">Image Link</label>
                 <input name="imgUrl" type="text" class="form-control" placeholder="Enter the Image Link of your place"
-                    id="imageNewPlacePost" required>
+                    id="imageNewPlacePost">
                 <div class="valid-feedback">
                     Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please Enter Image Link of your Place
                 </div>
             </div>
 
@@ -56,9 +53,9 @@
                 </div>
 
                 <div class="col-8 mb-3">
-                    <label for="locationNewPlacePost" class="form-label">Location</label>
-                    <input name="hotelLocation" type="text" class="form-control"
-                        placeholder="Enter the Location of your place" id="locationNewPlacePost" required>
+                    <label for="hotelCountry" class="form-label">Country</label>
+                    <input name="hotelCountry" type="text" class="form-control"
+                        placeholder="Enter the Location of your place" id="hotelCountry" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -68,6 +65,19 @@
                 </div>
 
             </div>
+
+            <div class="mb-3">
+                <label for="hotelLocation" class="form-label">Location</label>
+                <input name="hotelLocation" type="text" class="form-control" placeholder="Enter the Location of your place"
+                    id="hotelLocation" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Enter Location of your Place
+                </div>
+            </div>
+
             <button class="btn btn-primary my-3">Post Place</button>
         </form>
     </div>
