@@ -1,6 +1,5 @@
 const { ExpressError } = require('../errors/errorHandler');
 const { List } = require('../models/list');
-const { Review } = require('../models/review');
 
 // Listing all Places
 async function listingPagehandler(req, res) {
@@ -14,7 +13,9 @@ async function indivisualListPageHandler(req, res, next) {
     const listItem = await List.findById(id).populate('reviews');
     // Error if id is not found in db
     if (!listItem) {
-        return next(new ExpressError(404, 'No Place Found!'));
+        req.flash('error', 'Listing you requested for does not exist!');
+        res.redirect('/listing');
+        // return next(new ExpressError(404, 'No Place Found!'));
     }
     res.render('listings/individualList.ejs', { listItem: listItem });
 }
@@ -31,6 +32,7 @@ async function postEditedPageHandler(req, res, next) {
         hotelCountry: body.hotelCountry,
         hotelLocation: body.hotelLocation,
     });
+    req.flash('success', 'Listing Updated!');
     res.redirect('/listing');
 }
 
@@ -39,7 +41,9 @@ async function editListPageHandler(req, res, next) {
     const id = req.params.id;
     const element = await List.findById(id);
     if (!element) {
-        return next(new ExpressError(404, "No Place Found!"))
+        req.flash('error', 'Listing you requested for does not exist!');
+        res.redirect('/listing');
+        // return next(new ExpressError(404, "No Place Found!"))
     }
     res.render('listings/editList.ejs', { element: element });
 }
@@ -48,6 +52,7 @@ async function editListPageHandler(req, res, next) {
 async function deleteListHandler(req, res) {
     const id = req.params.id;
     await List.findByIdAndDelete(id);
+    req.flash('success', 'Listing Deleted!');
     res.redirect('/listing');
 }
 
@@ -67,28 +72,10 @@ async function postNewPlaceHandler(req, res) {
         hotelCountry: body.hotelCountry,
         hotelLocation: body.hotelLocation,
     });
+    req.flash('success', 'New Listing Created!');
     res.redirect('/listing');
 }
 
-async function postReviewHandler(req, res) {
-    let listing = await List.findById(req.params.id);
-    let newReview = new Review(req.body.review);
-
-    listing.reviews.push(newReview);
-
-    await newReview.save();
-    await listing.save();
-
-    res.redirect(`/listing/${req.params.id}`);
-}
-
-async function deleteReviewHandler(req, res) {
-    const { id, reviewId } = req.params;
-    await List.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-    await Review.findByIdAndDelete(reviewId);
-    console.log(id);
-    res.redirect(`/listing/${id}`);
-}
 
 
 module.exports = {
@@ -99,6 +86,4 @@ module.exports = {
     deleteListHandler,
     getNewListPostHandler,
     postNewPlaceHandler,
-    postReviewHandler,
-    deleteReviewHandler
 }

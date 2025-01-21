@@ -2,6 +2,9 @@ const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
+const flash = require('connect-flash');
+const { flashLocals } = require('./middlewares/flash');
+const { sessionMiddleware } = require('./middlewares/session');
 
 const port = 3000;
 const app = express();
@@ -23,6 +26,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride('_method'));
+//sessions
+app.use(sessionMiddleware);
+app.use(flash());
+app.use(flashLocals);
+
 
 // All requests on home page
 app.get('/', (req, res) => {

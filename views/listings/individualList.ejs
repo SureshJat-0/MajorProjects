@@ -1,7 +1,9 @@
 <% layout('/layouts/boilerplate') %>
     <div class="container custom_individualPage_css d-flex justify-content-center">
         <div class="div">
-            <h3><%= listItem.hotelTitle %></h3>
+            <h3>
+                <%= listItem.hotelTitle %>
+            </h3>
             <div class="card">
                 <img src="<%= listItem.imgUrl %>" alt="" class="image">
                 <div class="card-body">
@@ -9,7 +11,9 @@
                         <%= listItem.hotelDescription %>
                     </div>
                     <div class="cart-title my-1 fw-semibold custom_grey_color">₹<%= listItem.hotelPrice %> / night</div>
-                    <div class="card-title my-1 fw-semibold custom_grey_color"><%= listItem.hotelCountry %></div>
+                    <div class="card-title my-1 fw-semibold custom_grey_color">
+                        <%= listItem.hotelCountry %>
+                    </div>
                     <div class="card-text my-1 fw-semibold custom_grey_color">
                         <%= listItem.hotelLocation %>
                     </div>
@@ -24,5 +28,5 @@
         </div>
     </div>
 
-<!-- review section  -->
-<%- include('./review.ejs') %>
+    <!-- review section  -->
+    <%- include('./review.ejs') %>

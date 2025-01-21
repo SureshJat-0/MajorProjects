@@ -4,7 +4,8 @@ const ListingRouter = express.Router();
 const { asyncWrapErroHandler } = require('../errors/errorHandler');
 const { validateListingJoi, validateReviewJoi } = require('../errors/joi');
 
-const { listingPagehandler, indivisualListPageHandler, editListPageHandler, postEditedPageHandler, deleteListHandler, getNewListPostHandler, postNewPlaceHandler, postReviewHandler, deleteReviewHandler } = require('../routes/listingHandler');
+const { listingPagehandler, indivisualListPageHandler, editListPageHandler, postEditedPageHandler, deleteListHandler, getNewListPostHandler, postNewPlaceHandler } = require('../routes/listingHandler');
+const { postReviewHandler, deleteReviewHandler } = require('../routes/reviewHandler');
 
 // all listings
 ListingRouter.get('/', asyncWrapErroHandler(listingPagehandler));
