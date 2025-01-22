@@ -5,11 +5,15 @@ const ejsMate = require('ejs-mate');
 const flash = require('connect-flash');
 const { flashLocals } = require('./middlewares/flash');
 const { sessionMiddleware } = require('./middlewares/session');
+const passport = require('passport');
+const LocalStretagy = require('passport-local');
+const User = require('./models/user');
 
 const port = process.env.PORT || 3000;
 const app = express();
 
 const { ListingRouter } = require('./controllers/listing');
+const UserRouter = require('./controllers/user');
 
 // Connection of mongoDb
 const { connectMongo } = require('./mongoConnections');
@@ -30,12 +34,16 @@ app.use(methodOverride('_method'));
 app.use(sessionMiddleware);
 app.use(flash());
 app.use(flashLocals);
+//authantication
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStretagy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 // All requests on home page
-app.get('/', (req, res) => {
-    res.send('Home Page');
-})
+app.use('/', UserRouter);
 
 // All requests on listing page
 app.use('/listing', ListingRouter);
