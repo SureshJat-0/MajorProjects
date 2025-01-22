@@ -14,7 +14,7 @@ async function indivisualListPageHandler(req, res, next) {
     // Error if id is not found in db
     if (!listItem) {
         req.flash('error', 'Listing you requested for does not exist!');
-        res.redirect('/listing');
+        return res.redirect('/listing');
         // return next(new ExpressError(404, 'No Place Found!'));
     }
     res.render('listings/individualList.ejs', { listItem: listItem });

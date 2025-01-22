@@ -6,7 +6,7 @@ const flash = require('connect-flash');
 const { flashLocals } = require('./middlewares/flash');
 const { sessionMiddleware } = require('./middlewares/session');
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 const app = express();
 
 const { ListingRouter } = require('./controllers/listing');
