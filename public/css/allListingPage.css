@@ -7,11 +7,12 @@
 
 .custom_css_card .card {
     background: none;
-    max-height: 370px;
+    /* max-height: 370px; */
     border: 0;
 }
 
 .custom_css_card .card img {
+    max-height: 370px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }

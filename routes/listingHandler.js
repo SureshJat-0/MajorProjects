@@ -10,7 +10,7 @@ async function listingPagehandler(req, res) {
 // Indivisual page
 async function indivisualListPageHandler(req, res, next) {
     const id = req.params.id;
-    const listItem = await List.findById(id).populate('reviews');
+    const listItem = await List.findById(id).populate('reviews').populate('owner');
     // Error if id is not found in db
     if (!listItem) {
         req.flash('error', 'Listing you requested for does not exist!');
@@ -65,12 +65,15 @@ async function getNewListPostHandler(req, res) {
 async function postNewPlaceHandler(req, res) {
     const body = req.body;
     await List.create({
-        hotelTitle: body.hotelTitle,
-        hotelDescription: body.hotelDescription,
-        imgUrl: body.imgUrl,
-        hotelPrice: body.hotelPrice,
-        hotelCountry: body.hotelCountry,
-        hotelLocation: body.hotelLocation,
+        ...{
+            hotelTitle: body.hotelTitle,
+            hotelDescription: body.hotelDescription,
+            imgUrl: body.imgUrl,
+            hotelPrice: body.hotelPrice,
+            hotelCountry: body.hotelCountry,
+            hotelLocation: body.hotelLocation,
+        }
+        , owner: req.user._id
     });
     req.flash('success', 'New Listing Created!');
     res.redirect('/listing');

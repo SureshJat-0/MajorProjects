@@ -3,6 +3,8 @@ const ListingRouter = express.Router();
 // Error handler for asnc functions
 const { asyncWrapErroHandler } = require('../errors/errorHandler');
 const { validateListingJoi, validateReviewJoi } = require('../errors/joi');
+// middleware
+const { isLoggedIn } = require('../middlewares/isLoggedIn');
 
 const { listingPagehandler, indivisualListPageHandler, editListPageHandler, postEditedPageHandler, deleteListHandler, getNewListPostHandler, postNewPlaceHandler } = require('../routes/listingHandler');
 const { postReviewHandler, deleteReviewHandler } = require('../routes/reviewHandler');
@@ -10,18 +12,20 @@ const { postReviewHandler, deleteReviewHandler } = require('../routes/reviewHand
 // all listings
 ListingRouter.get('/', asyncWrapErroHandler(listingPagehandler));
 // add new place 
-ListingRouter.get('/new', asyncWrapErroHandler(getNewListPostHandler));
-ListingRouter.post('/new', validateListingJoi, asyncWrapErroHandler(postNewPlaceHandler));
+ListingRouter.route('/new')
+    .get(isLoggedIn, asyncWrapErroHandler(getNewListPostHandler))
+    .post(isLoggedIn, validateListingJoi, asyncWrapErroHandler(postNewPlaceHandler))
 // get indivisual place page
-ListingRouter.get('/:id', asyncWrapErroHandler(indivisualListPageHandler));
+ListingRouter.route('/:id')
+    .get(asyncWrapErroHandler(indivisualListPageHandler))
+    .delete(isLoggedIn, asyncWrapErroHandler(deleteListHandler))
 // edit place
-ListingRouter.get('/:id/edit/', asyncWrapErroHandler(editListPageHandler));
-ListingRouter.post('/:id/edit/', validateListingJoi, asyncWrapErroHandler(postEditedPageHandler));
-// delete place
-ListingRouter.delete('/:id', asyncWrapErroHandler(deleteListHandler));
+ListingRouter.route('/:id/edit/')
+    .get(isLoggedIn, asyncWrapErroHandler(editListPageHandler))
+    .post(isLoggedIn, validateListingJoi, asyncWrapErroHandler(postEditedPageHandler))
 // Post req for the review page
-ListingRouter.post('/:id/reviews', validateReviewJoi, asyncWrapErroHandler(postReviewHandler));
-ListingRouter.delete('/:id/reviews/:reviewId/', asyncWrapErroHandler(deleteReviewHandler));
+ListingRouter.post('/:id/reviews', isLoggedIn, validateReviewJoi, asyncWrapErroHandler(postReviewHandler));
+ListingRouter.delete('/:id/reviews/:reviewId/', isLoggedIn, asyncWrapErroHandler(deleteReviewHandler));
 
 module.exports = {
     ListingRouter,

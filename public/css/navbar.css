@@ -6,6 +6,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 /* navbar style  */
@@ -31,6 +32,12 @@ body {
 }
 
 .signup-custom-css,
-.login-custom-css {
+.login-custom-css,
+.custom-error-css {
     flex-grow: 1;
+}
+
+.login-custom-css a {
+    text-decoration: none;
+    color: rgb(85, 85, 85);
 }

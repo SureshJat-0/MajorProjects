@@ -1,7 +1,7 @@
 /* style for individual page  */
 
 .custom_individualPage_css .card {
-    width: 650px;
+    max-width: 650px;
     max-height: 600px;
     border: 0;
 }
@@ -9,6 +9,7 @@
 .custom_individualPage_css .card img {
     border-radius: 10px;
     width: 580px;
+    height: 400px;
 }
 
 .custom_individualPage_css .card .card-body {

@@ -33,13 +33,14 @@ app.use(methodOverride('_method'));
 //sessions
 app.use(sessionMiddleware);
 app.use(flash());
-app.use(flashLocals);
 //authantication
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStretagy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+// flash locals : This should be after passport for req.user to be defien
+app.use(flashLocals);
 
 
 // All requests on home page
