@@ -2,6 +2,12 @@
     --var--red: #FF5A5F;
 }
 
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 /* navbar style  */
 
 .navbar-brand {
@@ -22,4 +28,9 @@
 
 .navbar-nav a:hover {
     background-color: rgb(245, 245, 245);
+}
+
+.signup-custom-css,
+.login-custom-css {
+    flex-grow: 1;
 }

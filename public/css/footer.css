@@ -1,0 +1,9 @@
+.custom_footer_css {
+    background-color: rgb(235, 235, 235);
+}
+
+.icons .fa-square-facebook,
+.icons .fa-square-instagram,
+.icons .fa-linkedin {
+    cursor: pointer;
+}
