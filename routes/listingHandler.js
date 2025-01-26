@@ -10,7 +10,7 @@ async function listingPagehandler(req, res) {
 // Indivisual page
 async function indivisualListPageHandler(req, res, next) {
     const id = req.params.id;
-    const listItem = await List.findById(id).populate('reviews').populate('owner');
+    const listItem = await List.findById(id).populate({path: 'reviews', populate: {path: 'author'}}).populate('owner');
     // Error if id is not found in db
     if (!listItem) {
         req.flash('error', 'Listing you requested for does not exist!');

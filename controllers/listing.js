@@ -8,6 +8,7 @@ const { isLoggedIn } = require('../middlewares/isLoggedIn');
 
 const { listingPagehandler, indivisualListPageHandler, editListPageHandler, postEditedPageHandler, deleteListHandler, getNewListPostHandler, postNewPlaceHandler } = require('../routes/listingHandler');
 const { postReviewHandler, deleteReviewHandler } = require('../routes/reviewHandler');
+const { isOwner, isReviewAuthor } = require('../middlewares/isOwner');
 
 // all listings
 ListingRouter.get('/', asyncWrapErroHandler(listingPagehandler));
@@ -18,14 +19,14 @@ ListingRouter.route('/new')
 // get indivisual place page
 ListingRouter.route('/:id')
     .get(asyncWrapErroHandler(indivisualListPageHandler))
-    .delete(isLoggedIn, asyncWrapErroHandler(deleteListHandler))
+    .delete(isLoggedIn, isOwner, asyncWrapErroHandler(deleteListHandler))
 // edit place
 ListingRouter.route('/:id/edit/')
     .get(isLoggedIn, asyncWrapErroHandler(editListPageHandler))
-    .post(isLoggedIn, validateListingJoi, asyncWrapErroHandler(postEditedPageHandler))
+    .post(isLoggedIn, isOwner, validateListingJoi, asyncWrapErroHandler(postEditedPageHandler))
 // Post req for the review page
 ListingRouter.post('/:id/reviews', isLoggedIn, validateReviewJoi, asyncWrapErroHandler(postReviewHandler));
-ListingRouter.delete('/:id/reviews/:reviewId/', isLoggedIn, asyncWrapErroHandler(deleteReviewHandler));
+ListingRouter.delete('/:id/reviews/:reviewId/', isLoggedIn, isReviewAuthor, asyncWrapErroHandler(deleteReviewHandler));
 
 module.exports = {
     ListingRouter,

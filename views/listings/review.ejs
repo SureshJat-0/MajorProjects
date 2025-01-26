@@ -2,6 +2,7 @@
 
     <!-- form section of review  -->
     <hr>
+    <% if(currUser) { %>
     <form method="POST" novalidate action="/listing/<%= listItem.id %>/reviews" class="mb-3 needs-validation">
         <h3 class="mt-4">Leave a Review</h3>
         <div class="mb-3">
@@ -31,6 +32,7 @@
         </div>
 
     </form>
+    <% } %>
     <hr>
 
     <!-- showin all reviews -->
@@ -41,7 +43,7 @@
                 <% listItem.reviews.forEach(review=> { %>
                     <div class="card col-5 mb-3 ms-3">
                         <div class="card-body">
-                            <h5 class="card-title my-1">Jane Doe</h5>
+                            <h5 class="card-title my-1">@<%= review.author.username %></h5>
                             <div class="card-text my-1">
                                 <%= review.comment %>
                             </div>

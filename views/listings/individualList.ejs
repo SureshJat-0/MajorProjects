@@ -20,12 +20,14 @@
                     </div>
                 </div>
             </div>
-            <div class="btns d-flex">
-                <a href="/listing/<%= listItem.id %>/edit" class="btn btn-primary m-1 ms-0">Edit this Place</a>
-                <form method="POST" class="m-1 mx-3" action="/listing/<%= listItem._id %>?_method=DELETE">
-                    <button class="btn btn-danger">Delete this Place</button>
-                </form>
-            </div>
+            <% if (currUser && currUser._id.equals(listItem.owner._id)) { %>
+                <div class="btns d-flex">
+                    <a href="/listing/<%= listItem.id %>/edit" class="btn btn-primary m-1 ms-0">Edit this Place</a>
+                    <form method="POST" class="m-1 mx-3" action="/listing/<%= listItem._id %>?_method=DELETE">
+                        <button class="btn btn-danger">Delete this Place</button>
+                    </form>
+                </div>
+            <% } %>
         </div>
     </div>
 
