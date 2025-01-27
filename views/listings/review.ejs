@@ -3,61 +3,75 @@
     <!-- form section of review  -->
     <hr>
     <% if(currUser) { %>
-    <form method="POST" novalidate action="/listing/<%= listItem.id %>/reviews" class="mb-3 needs-validation">
-        <h3 class="mt-4">Leave a Review</h3>
-        <div class="mb-3">
-            <label for="ratingReview" class="form-label">Rating</label>
-            <input name="review[rating]" type="range" min="1" max="5" class="form-range" id="ratingReview" required>
-            <div class="valid-feedback">
-                Looks good!
+        <form method="POST" novalidate action="/listing/<%= listItem.id %>/reviews" class="mb-3 needs-validation">
+            <h3 class="mt-4">Leave a Review</h3>
+            <div class="mb-3">
+                <div class="mb-1">
+                    <label for="ratingReview" class="form-label">Rating</label>
+                    <fieldset class="starability-slot">
+                        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
+                            aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                    </fieldset>
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Enter Valid Rating.
+                </div>
             </div>
-            <div class="invalid-feedback">
-                Please Enter Valid Rating.
+
+            <div class="mb-3">
+                <label for="commentRiview" class="form-label">Comments</label>
+                <textarea class="form-control" name="review[comment]" id="commentRiview" rows="4" required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Enter Valid Comment.
+                </div>
             </div>
-        </div>
 
-        <div class="mb-3">
-            <label for="commentRiview" class="form-label">Comments</label>
-            <textarea class="form-control" name="review[comment]" id="commentRiview" rows="4" required></textarea>
-            <div class="valid-feedback">
-                Looks good!
+            <div class="mb-3">
+                <button class="btn btn-outline-dark">Submit</button>
             </div>
-            <div class="invalid-feedback">
-                Please Enter Valid Comment.
-            </div>
-        </div>
 
-        <div class="mb-3">
-            <button class="btn btn-outline-dark">Submit</button>
-        </div>
+        </form>
+        <% } %>
+            <hr>
 
-    </form>
-    <% } %>
-    <hr>
-
-    <!-- showin all reviews -->
-    <h3 class="my-4">All Reviews</h3>
-    <div class="">
-        <% if (listItem.reviews.length> 0) { %>
-            <div class="row">
-                <% listItem.reviews.forEach(review=> { %>
-                    <div class="card col-5 mb-3 ms-3">
-                        <div class="card-body">
-                            <h5 class="card-title my-1">@<%= review.author.username %></h5>
-                            <div class="card-text my-1">
-                                <%= review.comment %>
+            <!-- showin all reviews -->
+            <h3 class="my-4">All Reviews</h3>
+            <div class="">
+                <% if (listItem.reviews.length> 0) { %>
+                    <div class="row">
+                        <% listItem.reviews.forEach(review=> { %>
+                            <div class="card col-5 mb-3 ms-3">
+                                <div class="card-body">
+                                    <h5 class="card-title my-1">@<%= review.author.username %>
+                                    </h5>
+                                    <p class="starability-result" data-rating="<%= review.rating %>"></p>
+                                    <div class="card-text my-1">
+                                        <%= review.comment %>
+                                    </div>
+                                    <form action="/listing/<%= listItem._id %>/reviews/<%= review._id %>?_method=DELETE"
+                                        method="POST">
+                                        <button class="btn btn-sm btn-dark">Delete</button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="card-text my-1">
-                                <%= review.rating %> Star
-                            </div>
-                            <form action="/listing/<%= listItem._id %>/reviews/<%= review._id %>?_method=DELETE"
-                                method="POST">
-                                <button class="btn btn-sm btn-dark">Delete</button>
-                            </form>
-                        </div>
+                            <% }) %>
                     </div>
-                    <% }) %>
+                    <% } %>
             </div>
-            <% } %>
-    </div>
 </div>
