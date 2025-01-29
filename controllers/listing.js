@@ -1,5 +1,9 @@
 const express = require('express');
 const ListingRouter = express.Router();
+const multer  = require('multer');
+const { storage } = require('../cloudConfig');
+const upload = multer({ storage })
+
 // Error handler for asnc functions
 const { asyncWrapErroHandler } = require('../errors/errorHandler');
 const { validateListingJoi, validateReviewJoi } = require('../errors/joi');
@@ -15,8 +19,8 @@ ListingRouter.get('/', asyncWrapErroHandler(listingPagehandler));
 // add new place 
 ListingRouter.route('/new')
     .get(isLoggedIn, asyncWrapErroHandler(getNewListPostHandler))
-    .post(isLoggedIn, validateListingJoi, asyncWrapErroHandler(postNewPlaceHandler))
-// get indivisual place page
+    .post(isLoggedIn, upload.single('image'), validateListingJoi, asyncWrapErroHandler(postNewPlaceHandler))
+// indivisual place page
 ListingRouter.route('/:id')
     .get(asyncWrapErroHandler(indivisualListPageHandler))
     .delete(isLoggedIn, isOwner, asyncWrapErroHandler(deleteListHandler))

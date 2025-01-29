@@ -8,6 +8,7 @@ async function isOwner(req, res, next) {
         req.flash('error', 'You are not the owner!');
         return res.redirect(`/listing/${id}`);
     }
+    next();
 }
 
 async function isReviewAuthor(req, res, next) {

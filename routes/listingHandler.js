@@ -23,15 +23,10 @@ async function indivisualListPageHandler(req, res, next) {
 // Post the edited Place to db
 async function postEditedPageHandler(req, res, next) {
     const body = req.body;
+    const { path, filename } = require(req.file)
     const id = req.params.id;
-    await List.findByIdAndUpdate(id, {
-        hotelTitle: body.hotelTitle,
-        hotelDescription: body.hotelDescription,
-        imgUrl: body.imgUrl,
-        hotelPrice: body.hotelPrice,
-        hotelCountry: body.hotelCountry,
-        hotelLocation: body.hotelLocation,
-    });
+    const editedListing = {...body, image: {url: path, filename: filename}};
+    await List.findByIdAndUpdate(id, editedListing);
     req.flash('success', 'Listing Updated!');
     res.redirect('/listing');
 }
@@ -64,16 +59,10 @@ async function getNewListPostHandler(req, res) {
 // Post the new page on db
 async function postNewPlaceHandler(req, res) {
     const body = req.body;
+    const { path, filename } = req.file;
     await List.create({
-        ...{
-            hotelTitle: body.hotelTitle,
-            hotelDescription: body.hotelDescription,
-            imgUrl: body.imgUrl,
-            hotelPrice: body.hotelPrice,
-            hotelCountry: body.hotelCountry,
-            hotelLocation: body.hotelLocation,
-        }
-        , owner: req.user._id
+        ...body
+        , owner: req.user._id, image: { url: path, filename: filename },
     });
     req.flash('success', 'New Listing Created!');
     res.redirect('/listing');

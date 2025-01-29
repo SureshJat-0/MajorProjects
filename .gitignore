@@ -3,3 +3,4 @@ package-lock.json
 init
 .DS_Store
 classRoom
+.env
