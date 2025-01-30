@@ -10,7 +10,7 @@ async function listingPagehandler(req, res) {
 // Indivisual page
 async function indivisualListPageHandler(req, res, next) {
     const id = req.params.id;
-    const listItem = await List.findById(id).populate({path: 'reviews', populate: {path: 'author'}}).populate('owner');
+    const listItem = await List.findById(id).populate({ path: 'reviews', populate: { path: 'author' } }).populate('owner');
     // Error if id is not found in db
     if (!listItem) {
         req.flash('error', 'Listing you requested for does not exist!');
@@ -24,10 +24,10 @@ async function indivisualListPageHandler(req, res, next) {
 async function postEditedPageHandler(req, res, next) {
     const body = req.body;
     const id = req.params.id;
-    const editedListing = {...body};
+    const editedListing = { ...body };
     if (req.file && typeof req.file != 'undefined') {
         const { path, filename } = req.file;
-        const image = {url: path, filename: filename}
+        const image = { url: path, filename: filename }
         editedListing.image = image;
     }
     await List.findByIdAndUpdate(id, editedListing);

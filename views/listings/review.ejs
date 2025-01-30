@@ -1,8 +1,8 @@
 <div class="container my-4">
 
     <!-- form section of review  -->
-    <hr>
     <% if(currUser) { %>
+        <hr>
         <form method="POST" novalidate action="/listing/<%= listItem.id %>/reviews" class="mb-3 needs-validation">
             <h3 class="mt-4">Leave a Review</h3>
             <div class="mb-3">
@@ -49,9 +49,11 @@
         </form>
         <% } %>
             <hr>
-
             <!-- showin all reviews -->
             <h3 class="my-4">All Reviews</h3>
+            <% if(listItem.reviews.length === 0) { %>
+                <p>No reviews</p>
+            <% } %>
             <div class="">
                 <% if (listItem.reviews.length> 0) { %>
                     <div class="row">
