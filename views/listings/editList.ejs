@@ -2,7 +2,7 @@
 
     <div class="container d-flex justify-content-center">
         <form class="custom_editPlace_form needs-validation" novalidate action="/listing/<%= element.id %>/edit/"
-            method="post">
+            method="post" enctype="multipart/form-data">
             <h1 class="heading">Edit Your Place</h1>
 
             <div class="mb-3">
@@ -31,14 +31,16 @@
             </div>
 
             <div class="mb-3">
-                <label for="imageNewPlacePost" class="form-label">Image Link</label>
-                <input value="<%= element.imgUrl %>" name="imgUrl" type="text" class="form-control"
-                    placeholder="Enter the Image Link of your place" id="imageNewPlacePost">
+                <p>Image preview</p>
+                <img src="<%= previewUrl %>" alt="preview image">
+            </div>
+
+            <div class="mb-3">
+                <label for="imageNewPlacePost" class="form-label">Upload new Image </label>
+                <input name="image" type="file" class="form-control"
+                     id="imageNewPlacePost">
                 <div class="valid-feedback">
                     Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please Enter Image Link of your Place
                 </div>
             </div>
 

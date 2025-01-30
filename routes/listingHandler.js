@@ -23,9 +23,13 @@ async function indivisualListPageHandler(req, res, next) {
 // Post the edited Place to db
 async function postEditedPageHandler(req, res, next) {
     const body = req.body;
-    const { path, filename } = require(req.file)
     const id = req.params.id;
-    const editedListing = {...body, image: {url: path, filename: filename}};
+    const editedListing = {...body};
+    if (req.file && typeof req.file != 'undefined') {
+        const { path, filename } = req.file;
+        const image = {url: path, filename: filename}
+        editedListing.image = image;
+    }
     await List.findByIdAndUpdate(id, editedListing);
     req.flash('success', 'Listing Updated!');
     res.redirect('/listing');
@@ -35,12 +39,14 @@ async function postEditedPageHandler(req, res, next) {
 async function editListPageHandler(req, res, next) {
     const id = req.params.id;
     const element = await List.findById(id);
+    let previewUrl = element.image.url;
+    previewUrl = previewUrl.replace('/upload', '/upload/w_250');
     if (!element) {
         req.flash('error', 'Listing you requested for does not exist!');
         res.redirect('/listing');
         // return next(new ExpressError(404, "No Place Found!"))
     }
-    res.render('listings/editList.ejs', { element: element });
+    res.render('listings/editList.ejs', { element: element, previewUrl });
 }
 
 // Delete the current Place

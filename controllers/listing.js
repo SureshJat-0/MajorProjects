@@ -27,7 +27,7 @@ ListingRouter.route('/:id')
 // edit place
 ListingRouter.route('/:id/edit/')
     .get(isLoggedIn, asyncWrapErroHandler(editListPageHandler))
-    .post(isLoggedIn, isOwner, validateListingJoi, asyncWrapErroHandler(postEditedPageHandler))
+    .post(isLoggedIn, isOwner, upload.single('image'), validateListingJoi, asyncWrapErroHandler(postEditedPageHandler))
 // Post req for the review page
 ListingRouter.post('/:id/reviews', isLoggedIn, validateReviewJoi, asyncWrapErroHandler(postReviewHandler));
 ListingRouter.delete('/:id/reviews/:reviewId/', isLoggedIn, isReviewAuthor, asyncWrapErroHandler(deleteReviewHandler));
