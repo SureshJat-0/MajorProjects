@@ -1,5 +1,10 @@
 const { ExpressError } = require('../errors/errorHandler');
 const { List } = require('../models/list');
+// geo map 
+const { Client } = require("@googlemaps/google-maps-services-js");
+const client = new Client({});
+
+// console.log(coordiantes);
 
 // Listing all Places
 async function listingPagehandler(req, res) {
@@ -66,10 +71,24 @@ async function getNewListPostHandler(req, res) {
 async function postNewPlaceHandler(req, res) {
     const body = req.body;
     const { path, filename } = req.file;
-    await List.create({
+    let newListing = await List.create({
         ...body
         , owner: req.user._id, image: { url: path, filename: filename },
     });
+    // map data 
+    const geoResponse = await client.geocode({
+        params: {
+            address: body.hotelLocation,
+            key: process.env.GOOGLE_MAP_API_KEY,
+        },
+    });
+    if (geoResponse.data.status !== "OK") {
+        throw new ExpressError(404, "Geocoding failed: " + geoResponse.data.status);
+    }
+    newListing.geometry.coordinates.lat = geoResponse.data.results[0].geometry.location.lat;
+    newListing.geometry.coordinates.lng = geoResponse.data.results[0].geometry.location.lng;
+    newListing.save();
+
     req.flash('success', 'New Listing Created!');
     res.redirect('/listing');
 }

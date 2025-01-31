@@ -2,4 +2,5 @@
 
 .custom_newPlace_post {
     width: 800px;
+    flex-grow: 1;
 }

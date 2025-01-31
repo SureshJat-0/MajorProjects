@@ -35,6 +35,18 @@ const ListSchema = new mongoose.Schema({
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+    },
+    geometry: {
+        coordinates: {
+            lat: {
+                type: Number,
+                require,
+            },
+            lng: {
+                type: Number,
+                require,
+            }
+        }
     }
 });
 
