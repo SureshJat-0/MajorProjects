@@ -1,5 +1,9 @@
 /* style for edit place  */
 
 .custom_editPlace_form {
-    width: 800px;
+    flex-grow: 1;
+}
+
+.custom_preview_css img{
+    width: 200px;
 }

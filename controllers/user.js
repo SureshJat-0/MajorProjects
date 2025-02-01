@@ -6,10 +6,6 @@ const { asyncWrapErroHandler } = require('../errors/errorHandler');
 const { getSignupPageHandler, postSignupHandler, getLoginPageHadler, postLoginHandler, logoutUserHandler } = require('../routes/userHandler');
 const { saveRedirectUrl } = require('../middlewares/isLoggedIn');
 
-UserRouter.get('/', (req, res) => {
-    res.send('home');
-})
-
 UserRouter.route('/signup')
     .get(getSignupPageHandler)
     .post(asyncWrapErroHandler(postSignupHandler))

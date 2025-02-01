@@ -12,9 +12,20 @@
 }
 
 .custom_css_card .card img {
-    max-height: 370px;
+    height: 300px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+    .custom_css_card .card img {
+        height: 280px;
+    }
+}
+@media only screen and (max-width: 576px) {
+    .custom_css_card .card img {
+        height: 240px;
+    }
 }
 
 .custom_css_card .card .card-body {

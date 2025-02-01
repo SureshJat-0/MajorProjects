@@ -1,6 +1,6 @@
 <% layout('/layouts/boilerplate') %>
 
-    <div class="container d-flex justify-content-center custom_newPlace_post">
+    <div class="container d-flex justify-content-center custom_newPlace_post col-lg-7 col-md-8 offset-md-2">
         <form class="custom_newPlace_post needs-validation" novalidate action="/listing/new" method="post" enctype="multipart/form-data">
 
             <h1 class="heading">Post Your Place</h1>
@@ -50,7 +50,7 @@
 
             <div class="row">
 
-                <div class="col-4 mb-3">
+                <div class="col-sm-4 mb-3">
                     <label for="priceNewPlacePost" class="form-label">Price</label>
                     <input name="hotelPrice" type="number" class="form-control"
                         placeholder="Enter the Price of your place" id="priceNewPlacePost" required>
@@ -62,7 +62,7 @@
                     </div>
                 </div>
 
-                <div class="col-8 mb-3">
+                <div class="col-sm-8 mb-3">
                     <label for="hotelCountry" class="form-label">Country</label>
                     <input name="hotelCountry" type="text" class="form-control"
                         placeholder="Enter the Location of your place" id="hotelCountry" required>
