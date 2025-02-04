@@ -14,10 +14,10 @@
         <% if (!currUser) { %>
           <a class="nav-link active" aria-current="page" href="/signup">SignUp</a>
           <a class="nav-link" href="/login">Login</a>
-        <% } %>
-        <% if (currUser) { %>
-          <a class="nav-link" href="/logout">Logout</a>
-        <% } %>
+          <% } %>
+            <% if (currUser) { %>
+              <a class="nav-link" href="/logout">Logout</a>
+              <% } %>
       </div>
     </div>
   </div>

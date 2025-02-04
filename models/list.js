@@ -47,6 +47,11 @@ const ListSchema = new mongoose.Schema({
                 require,
             }
         }
+    },
+    category: {
+        type: String,
+        enum: [ 'none', 'Trending', 'Islands', 'Farms', 'Beachfront', 'Rooms', 'OMG!', 'Castles', 'Camping', 'Lake', 'Design'],
+        require: true,
     }
 });
 

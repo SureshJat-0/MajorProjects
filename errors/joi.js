@@ -8,6 +8,7 @@ const joiFormValidationSechema = joi.object({
         hotelDescription: joi.string().required(),
         hotelPrice: joi.number().required(),
         hotelCountry: joi.string().required(),
+        category: joi.string().required(),
         hotelLocation: joi.string().required(),
     }).required(),
 });

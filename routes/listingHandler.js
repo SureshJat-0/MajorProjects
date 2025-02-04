@@ -4,10 +4,12 @@ const { List } = require('../models/list');
 const { Client } = require("@googlemaps/google-maps-services-js");
 const client = new Client({});
 
-// console.log(coordiantes);
-
 // Listing all Places
 async function listingPagehandler(req, res) {
+    if (req.query.category && req.query.category !== '') {
+        const elements = await List.find({category: req.query.category});
+        return res.render('listings/allListingPage.ejs', { allLists: elements });
+    }
     const allLists = await List.find();
     res.render('listings/allListingPage.ejs', { allLists: allLists });
 }

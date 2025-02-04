@@ -1,4 +1,8 @@
 /* style of all listings */
+.custom_css_allListings {
+    flex-grow: 1;
+}
+
 
 .custom_css_card a {
     text-decoration: none;

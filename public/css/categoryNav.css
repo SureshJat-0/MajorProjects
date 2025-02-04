@@ -1,0 +1,24 @@
+.custom-css-category-nav .nav-link {
+    border-radius: 0;
+}
+
+.custom-css-category-nav a{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+    opacity: 0.7;
+    margin-top: 0;
+    border-bottom: 2px solid transparent;
+}
+
+.custom-css-category-nav a:hover {
+    opacity: 1;
+    background-color: white;
+    border-bottom: 2px solid black;
+}
+
+.custom-css-category-nav .nav-link i{
+    font-size: 1.5rem;
+}
