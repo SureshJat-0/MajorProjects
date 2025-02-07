@@ -71,6 +71,28 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select class="form-select" name="category" id="category" aria-label="Default select example">
+                        <option value="none" selected>None</option>
+                        <option value="Trending">Trending</option>
+                        <option value="Islands">Islands</option>
+                        <option value="Farms">Farms</option>
+                        <option value="Beachfront">Beachfront</option>
+                        <option value="Rooms">Rooms</option>
+                        <option value="OMG!">OMG!</option>
+                        <option value="Castles">Castles</option>
+                        <option value="Camping">Camping</option>
+                        <option value="Lake">Lake</option>
+                        <option value="Design">Design</option>
+                        <option value="Caves">Caves</option>
+                        <option value="New">New</option>
+                        <option value="Mansions">Mansions</option>
+                        <option value="Play">Play</option>
+                        <option value="Desert">Desert</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
                     <label for="hotelLocation" class="form-label">Location</label>
                     <input value="<%= element.hotelLocation %>" name="hotelLocation" type="text" class="form-control"
                         placeholder="Enter the Location of your place" id="hotelLocation" required>

@@ -22,3 +22,11 @@
 .custom-css-category-nav .nav-link i{
     font-size: 1.5rem;
 }
+
+.custom_tax_js {
+    display: none;
+}
+
+.form-check-reverse {
+    min-width: 230px;
+}

@@ -37,6 +37,26 @@ async function postEditedPageHandler(req, res, next) {
         const image = { url: path, filename: filename }
         editedListing.image = image;
     }
+    // edit map if location is edited 
+    if (body.hotelLocation) {
+        const geoResponse = await client.geocode({
+            params: {
+                address: body.hotelLocation,
+                key: process.env.GOOGLE_MAP_API_KEY,
+            },
+        });
+        if (geoResponse.data.status !== "OK") {
+            throw new ExpressError(404, "Geocoding failed: " + geoResponse.data.status);
+        }
+
+        editedListing.geometry = editedListing.geometry || {} ;
+        editedListing.geometry.coordinates = {
+            lat: geoResponse.data.results[0].geometry.location.lat,
+            lng: geoResponse.data.results[0].geometry.location.lng
+        }
+
+    }
+
     await List.findByIdAndUpdate(id, editedListing);
     req.flash('success', 'Listing Updated!');
     res.redirect('/listing');
@@ -50,7 +70,7 @@ async function editListPageHandler(req, res, next) {
     previewUrl = previewUrl.replace('/upload', '/upload/w_250');
     if (!element) {
         req.flash('error', 'Listing you requested for does not exist!');
-        res.redirect('/listing');
+        return res.redirect('/listing');
         // return next(new ExpressError(404, "No Place Found!"))
     }
     res.render('listings/editList.ejs', { element: element, previewUrl });
@@ -95,6 +115,12 @@ async function postNewPlaceHandler(req, res) {
     res.redirect('/listing');
 }
 
+// search 
+async function postSearchHandler(req, res) {
+    const { search } = req.body;
+    const results = await List.find({$text: {$search: search}});
+    return res.render('listings/allListingPage.ejs', { allLists: results });
+}
 
 
 module.exports = {
@@ -105,4 +131,5 @@ module.exports = {
     deleteListHandler,
     getNewListPostHandler,
     postNewPlaceHandler,
+    postSearchHandler,
 }

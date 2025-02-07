@@ -50,9 +50,19 @@ const ListSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: [ 'none', 'Trending', 'Islands', 'Farms', 'Beachfront', 'Rooms', 'OMG!', 'Castles', 'Camping', 'Lake', 'Design'],
+        enum: ['none', 'Trending', 'Islands', 'Farms', 'Beachfront', 'Rooms', 'OMG!', 'Castles', 'Camping', 'Lake', 'Design', 'Caves', 'new', 'Mansions', 'Play', 'Desert'],
         require: true,
     }
+});
+
+// for the search query
+ListSchema.index({ 
+    hotelTitle: "text", 
+    hotelDescription: "text", 
+    hotelPrice: "text", 
+    hotelCountry: "text", 
+    hotelLocation: "text", 
+    category: "text" 
 });
 
 ListSchema.post('findOneAndDelete', async (listing) => {

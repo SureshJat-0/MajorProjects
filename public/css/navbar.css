@@ -41,3 +41,26 @@ body {
     text-decoration: none;
     color: rgb(85, 85, 85);
 }
+
+.custom-css-search-nav {
+    position: relative;
+}
+
+.custom-css-search-nav input {
+    width: 20rem;
+    padding: 0.6rem 1rem;
+}
+
+.custom-css-search-nav button {
+    position: absolute;
+    right: 0.8rem;
+    margin-top: 0.2rem;
+    color: var(--var--red);
+    border-color: var(--var--red);
+    background-color: white;
+}
+.custom-css-search-nav button:hover {
+    color: white;
+    background-color: var(--var--red);
+    border-color: var(--var--red);
+}

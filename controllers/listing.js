@@ -10,7 +10,7 @@ const { validateListingJoi, validateReviewJoi } = require('../errors/joi');
 // middleware
 const { isLoggedIn } = require('../middlewares/isLoggedIn');
 
-const { listingPagehandler, indivisualListPageHandler, editListPageHandler, postEditedPageHandler, deleteListHandler, getNewListPostHandler, postNewPlaceHandler } = require('../routes/listingHandler');
+const { listingPagehandler, indivisualListPageHandler, editListPageHandler, postEditedPageHandler, deleteListHandler, getNewListPostHandler, postNewPlaceHandler, postSearchHandler } = require('../routes/listingHandler');
 const { postReviewHandler, deleteReviewHandler } = require('../routes/reviewHandler');
 const { isOwner, isReviewAuthor } = require('../middlewares/isOwner');
 
@@ -20,6 +20,9 @@ ListingRouter.get('/', asyncWrapErroHandler(listingPagehandler));
 ListingRouter.route('/new')
     .get(isLoggedIn, asyncWrapErroHandler(getNewListPostHandler))
     .post(isLoggedIn, upload.single('image'), validateListingJoi, asyncWrapErroHandler(postNewPlaceHandler))
+//search
+ListingRouter.route('/search')
+    .post(asyncWrapErroHandler(postSearchHandler))
 // indivisual place page
 ListingRouter.route('/:id')
     .get(asyncWrapErroHandler(indivisualListPageHandler))
