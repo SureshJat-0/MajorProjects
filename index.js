@@ -19,9 +19,11 @@ const app = express();
 const { ListingRouter } = require('./controllers/listing');
 const UserRouter = require('./controllers/user');
 
+const dbUrl = process.env.ATLAS_URL;
+
 // Connection of mongoDb
 const { connectMongo } = require('./mongoConnections');
-connectMongo('mongodb://127.0.0.1:27017/airbnb')
+connectMongo(dbUrl)
     .then(() => { console.log("MongoDb Connected") })
     .catch((err) => { console.log("Mongo error") });
 

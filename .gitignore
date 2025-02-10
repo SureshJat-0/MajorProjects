@@ -1,6 +1,5 @@
-node_modules
+node_modules/
 package-lock.json
 init
-.DS_Store
-classRoom
+**/.DS_Store
 .env
